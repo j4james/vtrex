@@ -17,6 +17,7 @@
 using namespace std::string_literals;
 using namespace std::chrono_literals;
 
+using std::chrono::duration_cast;
 using std::chrono::milliseconds;
 using std::chrono::seconds;
 

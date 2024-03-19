@@ -112,7 +112,9 @@ soft_font::soft_font(const capabilities& caps)
         auto font_data = std::string{font_10x16};
         // Some terminals (like RLogin) will not cope with DECDLD content
         // containing newlines, so we need to strip those out first.
-        std::erase(font_data, '\n');
+        for (auto i = 0; i < font_data.size(); i++)
+            if (font_data[i] == '\n')
+                font_data.erase(i--, 1);
         std::cout << "\033P" << font_data << "\033\\";
         std::cout << "\033( @";
     }
