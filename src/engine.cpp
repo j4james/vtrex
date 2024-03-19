@@ -38,7 +38,7 @@ bool engine::run()
             const auto ch = os::getch();
             if (ch == 32) {
                 _jump_pressed = true;
-            } else if (ch == 27 || ch == 3) {
+            } else if (ch == 'q' || ch == 27 || ch == 3) {
                 exit_requested = true;
             }
         }
