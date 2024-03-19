@@ -55,15 +55,18 @@ int main(const int argc, const char* argv[])
     const auto macros = macro_manager{caps, options};
     // Setup the color assignment and palette.
     const auto colors = coloring{caps, options};
-    // Save modes that we're going to change.
+    // Save the modes and settings that we're going to change.
     const auto original_decscnm = caps.query_mode(5);
     const auto original_decawm = caps.query_mode(7);
+    const auto original_decssdt = caps.query_setting("$~");
     // Reverse screen attributes so it's effectively black on white.
     std::cout << "\033[?5h";
     // Disable line wrapping.
     std::cout << "\033[?7l";
     // Disable page cursor coupling.
     std::cout << "\033[?64l";
+    // Hide the status line.
+    std::cout << "\033[0$~";
     // Clear margins.
     std::cout << "\033[r";
     // Set default attributes.
@@ -96,6 +99,9 @@ int main(const int argc, const char* argv[])
     // Reapply line wrapping if not originally reset.
     if (original_decawm != false)
         std::cout << "\033[?7h";
+    // Restore the original status display type.
+    if (!original_decssdt.empty())
+        std::cout << "\033[" << original_decssdt;
     // Show the cursor.
     std::cout << "\033[?25h";
 
