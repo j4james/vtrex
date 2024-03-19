@@ -43,6 +43,7 @@ int os::getch()
 
 #include <signal.h>
 #include <termios.h>
+#include <unistd.h>
 
 #include <cstdio>
 

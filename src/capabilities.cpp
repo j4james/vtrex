@@ -6,6 +6,7 @@
 
 #include "os.h"
 
+#include <cstring>
 #include <iostream>
 
 using namespace std::string_literals;

@@ -26,7 +26,7 @@ endif()
 add_executable(vtrex ${MAIN_FILES})
 
 if(UNIX)
-    target_link_libraries(vtrex)
+    target_link_libraries(vtrex -lpthread)
 endif()
 
 set_target_properties(vtrex PROPERTIES CXX_STANDARD 20 CXX_STANDARD_REQUIRED On)
