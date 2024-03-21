@@ -25,7 +25,8 @@ macro_manager::macro_manager(const capabilities& caps, const options& options)
     : _caps{caps}, _options{options}
 {
     // Clear existing macros first to make sure we have space.
-    std::cout << "\033P0;1;0!z\033\\";
+    if (_caps.has_macros)
+        std::cout << "\033P0;1;0!z\033\\";
     const auto x_indent = std::max((caps.width - engine::width * 2) / 4, 0);
     const auto y_indent = std::max((caps.height - engine::height) / 2, 1);
     _init_scrollers(x_indent, y_indent);
@@ -41,7 +42,8 @@ macro_manager::macro_manager(const capabilities& caps, const options& options)
 macro_manager::~macro_manager()
 {
     // Clean out our macros on exit.
-    std::cout << "\033P0;1;0!z\033\\";
+    if (_caps.has_macros)
+        std::cout << "\033P0;1;0!z\033\\";
 }
 
 macro macro_manager::create(std::function<void(builder&)> callback)
