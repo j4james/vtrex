@@ -10,7 +10,6 @@
 
 options::options(const int argc, const char* argv[])
 {
-    auto ignore_compatibility = false;
     for (auto i = 1; i < argc; i++) {
         const auto arg = std::string{argv[i]};
         if (arg == "--mono") {
